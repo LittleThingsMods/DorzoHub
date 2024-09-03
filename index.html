@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorzo Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212; /* Dark mode background */
+            color: #ffffff; /* White text for dark mode */
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+        }
+        .main-content, .cs2-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .hidden {
+            display: none;
+        }
+        .password-form {
+            margin: 20px;
+        }
+        .password-form input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            margin-right: 10px;
+            background-color: #333; /* Dark mode input background */
+            color: white;
+        }
+        .password-form input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .password-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .header-text {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ffffff; /* White color for the header */
+        }
+        .script-info {
+            font-size: 18px;
+            margin-top: 20px;
+            word-wrap: break-word;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .soon-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: black;
+            background-color: yellow; /* Yellow button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s; /* Smooth animation for size change */
+        }
+        .grow-shrink {
+            animation: grow-shrink 0.3s forwards; /* Animation duration and direction */
+        }
+        @keyframes grow-shrink {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); } /* Button grows 50% bigger */
+            100% { transform: scale(1); } /* Button returns to original size */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="password-section">
+            <div class="header-text">Dorzo Hub</div>
+            <form id="password-form" class="password-form">
+                <input type="password" id="password" placeholder="Enter password" required>
+                <input type="submit" value="Enter">
+            </form>
+        </div>
+        <div id="main-content" class="main-content">
+            <div class="script-info">
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/LittleThingsMods/Dorzo-Hub/main/Main%20Script"))()
+            </div>
+            <div class="social-links">
+                <a href="https://discord.gg/tCxppmmgcv" target="_blank" style="color: yellow;">Discord: https://discord.gg/tCxppmmgcv</a> <br>
+                <a href="https://t.me/DorzoHubRoblox" target="_blank" style="color: yellow;">Telegram: t.me/DorzoHubRoblox</a>
+            </div>
+            <div class="buttons">
+                <button class="soon-button" id="cs2-button">CS2 cheat</button>
+                <button class="soon-button">Soon...</button>
+                <button class="soon-button">Soon...</button>
+            </div>
+        </div>
+        <div id="cs2-content" class="cs2-content">
+            <div class="header-text">CS2</div>
+            <div class="content">
+                Welcome to the CS2 Page!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('password-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var password = document.getElementById('password').value;
+            if (password === 'DorzoHubTops') {
+                document.getElementById('password-section').classList.add('hidden');
+                var mainContent = document.getElementById('main-content');
+                mainContent.style.display = 'block';
+                setTimeout(function() {
+                    mainContent.style.opacity = 1;
+                }, 10);
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        });
+
+        // Adding the grow-shrink animation to the "Soon..." buttons on click
+        const soonButtons = document.querySelectorAll('.soon-button');
+        soonButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                button.classList.add('grow-shrink');
+                button.addEventListener('animationend', () => {
+                    button.classList.remove('grow-shrink'); // Reset animation state
+                }, { once: true });
+            });
+        });
+
+        // Handle the first button click to change text and navigate within the page
+        document.getElementById('cs2-button').addEventListener('click', function() {
+            this.textContent = 'CS2';
+            document.getElementById('main-content').style.display = 'none'; // Hide the main content
+            var cs2Content = document.getElementById('cs2-content');
+            cs2Content.style.display = 'block';
+            setTimeout(function() {
+                cs2Content.style.opacity = 1;
+            }, 10);
+        });
+    </script>
+</body>
+</html>
